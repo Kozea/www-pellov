@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from locale import LC_ALL, setlocale
+import locale
 
 import jinja2
 import mandrill
@@ -21,7 +21,7 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 app.config.from_envvar("WWWPELLOV_CONFIG", silent=True)
 
-setlocale(LC_ALL, "fr_FR")
+locale.setlocale(locale.LC_ALL, ("fr_FR", "UTF-8"))
 
 MANDRILL_KEY = app.config.get("MANDRILL_KEY")
 
