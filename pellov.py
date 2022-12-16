@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import locale
+from datetime import datetime
 
 import jinja2
 import mandrill
@@ -30,7 +31,10 @@ MANDRILL_KEY = app.config.get("MANDRILL_KEY")
 @app.route("/<page>")
 def page(page="index"):
     try:
-        return render_template("{}.html".format(page), page=page)
+        return render_template(
+            "{}.html".format(page), page=page, current_year=datetime.now().year
+        )
+
     except jinja2.exceptions.TemplateNotFound:
         abort(404)
 
