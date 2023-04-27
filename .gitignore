@@ -2,6 +2,7 @@ __pycache__
 *.map
 .www-teepy
 .cache
+*.cfg
 .env
 *.egg-info
 *.map

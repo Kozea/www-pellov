@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
 import locale
+import logging
 from datetime import datetime
 
+import gspread
 import jinja2
 import mandrill
 from flask import (
@@ -23,8 +25,39 @@ app.secret_key = "secret key"
 app.config.from_envvar("WWWPELLOV_CONFIG", silent=True)
 
 locale.setlocale(locale.LC_ALL, ("fr_FR", "UTF-8"))
+logging.basicConfig(
+    level=logging.DEBUG if app.debug else logging.INFO,
+    format="%(asctime)s %(name)s %(levelname)-8s %(message)s",
+)
+logger = logging.getLogger(__name__)
 
+CONTACT_SERVICE_ACCOUNT = app.config.get("CONTACT_SERVICE_ACCOUNT")
+CONTACT_SPREADSHEET_ID = app.config.get("CONTACT_SPREADSHEET_ID")
+CONTACT_WORKSHEET_ID = app.config.get("CONTACT_WORKSHEET_ID")
 MANDRILL_KEY = app.config.get("MANDRILL_KEY")
+
+
+def store_contact(firstname, lastname, email, company, phone, **_):
+
+    gc = gspread.service_account(CONTACT_SERVICE_ACCOUNT)
+
+    wks = gc.open_by_key(CONTACT_SPREADSHEET_ID).get_worksheet_by_id(
+        CONTACT_WORKSHEET_ID
+    )
+
+    contact_date = datetime.now()
+
+    wks.append_row(
+        (
+            contact_date.strftime("%d/%m/%Y"),
+            contact_date.strftime("%H:%M"),
+            firstname,
+            lastname,
+            email,
+            company,
+            phone,
+        )
+    )
 
 
 @app.route("/")
@@ -61,15 +94,23 @@ def contact():
         ),
     }
 
-    if app.debug:
-        print(message)
-    else:
-        mandrill.Mandrill(MANDRILL_KEY).messages.send(message=message)
+    try:
+        if app.debug:
+            logger.debug(message)
+        else:
+            mandrill.Mandrill(MANDRILL_KEY).messages.send(message=message)
+        flash(
+            "Nous vous remercions pour votre demande. "
+            "Notre équipe va revenir vers vous dans les plus brefs délais."
+        )
+    except Exception as e:
+        logger.error(f"Error while trying to send mail: {e}")
 
-    flash(
-        "Nous vous remercions pour votre demande. "
-        "Notre équipe va revenir vers vous dans les plus brefs délais."
-    )
+    try:
+        store_contact(**request.form)
+    except Exception as e:
+        logger.error(f"Error while storing contact: {e}")
+
     return redirect(url_for("page"))
 
 
