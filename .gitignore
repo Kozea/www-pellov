@@ -2,9 +2,11 @@ __pycache__
 *.map
 .www-teepy
 .cache
-*.cfg
+*.custom.Makefile
+*-custom.cfg
 .env
 *.egg-info
 *.map
 base.Makefile
+google-service-account.json
 .python-version
