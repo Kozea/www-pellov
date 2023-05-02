@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-import locale
 import logging
 from datetime import datetime
+from locale import LC_ALL, setlocale
 
 import gspread
 import jinja2
@@ -24,7 +24,7 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 app.config.from_envvar("WWWPELLOV_CONFIG", silent=True)
 
-locale.setlocale(locale.LC_ALL, ("fr_FR", "UTF-8"))
+setlocale(LC_ALL, "fr_FR")
 logging.basicConfig(
     level=logging.DEBUG if app.debug else logging.INFO,
     format="%(asctime)s %(name)s %(levelname)-8s %(message)s",
