@@ -26,7 +26,7 @@ docopt==0.4.0 \
 flask==2.0.2 \
     --hash=sha256:7b2fb8e934ddd50731893bdcdb00fc8c0315916f9fcd50d22c7cc1a95ab634e2 \
     --hash=sha256:cb90f62f1d8e4dc4621f52106613488b5ba826b2e1e10a33eac92f723093ab6a
-    # via -r requirements/base.in
+    # via -r base.in
 google-auth==2.17.3 \
     --hash=sha256:ce311e2bc58b130fddf316df57c9b3943c2a7b4f6ec31de9663a9333e4064efc \
     --hash=sha256:f586b274d3eb7bd932ea424b1c702a30e0393a2e2bc4ca3eae8263ffd8be229f
@@ -40,7 +40,7 @@ google-auth-oauthlib==1.0.0 \
 gspread==5.8.0 \
     --hash=sha256:b6125120049fd92a3e1e7544ac395f336cec3ff8be04550cf737d90af007685d \
     --hash=sha256:f9739e2b839d7fa1f8a5f0cf0d4ee68c776e2fbf4bfe3167ad2e910bd588fb44
-    # via -r requirements/base.in
+    # via -r base.in
 idna==3.3 \
     --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
     --hash=sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d
@@ -55,7 +55,7 @@ jinja2==3.0.3 \
     # via flask
 mandrill-37==1.1.0 \
     --hash=sha256:53d9e42d32aaef7f829a3de460549f3038b35f9fca37c007f9f778018f41154b
-    # via -r requirements/base.in
+    # via -r base.in
 markupsafe==2.0.1 \
     --hash=sha256:01a9b8ea66f1658938f65b93a85ebe8bc016e6769611be228d797c9d998dd298 \
     --hash=sha256:023cb26ec21ece8dc3907c0e8320058b2e0cb3c55cf9564da612bc325bed5e64 \
@@ -159,9 +159,9 @@ six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
     # via google-auth
-urllib3==1.26.7 \
-    --hash=sha256:4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece \
-    --hash=sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844
+urllib3==1.26.19 \
+    --hash=sha256:37a0344459b199fce0e80b0d3569837ec6b6937435c5244e7fd73fa6006830f3 \
+    --hash=sha256:3e3d753a8618b86d7de333b4223005f68720bcd6a7d2bcb9fbd2229ec7c1e429
     # via requests
 werkzeug==2.0.2 \
     --hash=sha256:63d3dc1cf60e7b7e35e97fa9861f7397283b75d765afcaefd993d6046899de8f \
