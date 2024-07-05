@@ -26,7 +26,7 @@ docopt==0.4.0 \
 flask==2.0.2 \
     --hash=sha256:7b2fb8e934ddd50731893bdcdb00fc8c0315916f9fcd50d22c7cc1a95ab634e2 \
     --hash=sha256:cb90f62f1d8e4dc4621f52106613488b5ba826b2e1e10a33eac92f723093ab6a
-    # via -r requirements/base.in
+    # via -r base.in
 google-auth==2.17.3 \
     --hash=sha256:ce311e2bc58b130fddf316df57c9b3943c2a7b4f6ec31de9663a9333e4064efc \
     --hash=sha256:f586b274d3eb7bd932ea424b1c702a30e0393a2e2bc4ca3eae8263ffd8be229f
@@ -40,7 +40,7 @@ google-auth-oauthlib==1.0.0 \
 gspread==5.8.0 \
     --hash=sha256:b6125120049fd92a3e1e7544ac395f336cec3ff8be04550cf737d90af007685d \
     --hash=sha256:f9739e2b839d7fa1f8a5f0cf0d4ee68c776e2fbf4bfe3167ad2e910bd588fb44
-    # via -r requirements/base.in
+    # via -r base.in
 idna==3.3 \
     --hash=sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff \
     --hash=sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d
@@ -55,7 +55,7 @@ jinja2==3.0.3 \
     # via flask
 mandrill-37==1.1.0 \
     --hash=sha256:53d9e42d32aaef7f829a3de460549f3038b35f9fca37c007f9f778018f41154b
-    # via -r requirements/base.in
+    # via -r base.in
 markupsafe==2.0.1 \
     --hash=sha256:01a9b8ea66f1658938f65b93a85ebe8bc016e6769611be228d797c9d998dd298 \
     --hash=sha256:023cb26ec21ece8dc3907c0e8320058b2e0cb3c55cf9564da612bc325bed5e64 \
@@ -141,9 +141,9 @@ pyasn1-modules==0.3.0 \
     --hash=sha256:5bd01446b736eb9d31512a30d46c1ac3395d676c6f3cafa4c03eb54b9925631c \
     --hash=sha256:d3ccd6ed470d9ffbc716be08bd90efbd44d0734bc9303818f7336070984a162d
     # via google-auth
-requests==2.26.0 \
-    --hash=sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24 \
-    --hash=sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7
+requests==2.32.2 \
+    --hash=sha256:dd951ff5ecf3e3b3aa26b40703ba77495dab41da839ae72ef3c8e5d8e2433289 \
+    --hash=sha256:fc06670dd0ed212426dfeb94fc1b983d917c4f9847c863f313c9dfaaffb7c23c
     # via
     #   mandrill-37
     #   requests-oauthlib
