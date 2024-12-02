@@ -6,3 +6,13 @@ extend-select = ["I", "T20", "T100"]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
+
+[tool.djlint]
+format_js=true
+ignore="H006,H031"
+indent=2
+max_line_length=100
+profile="jinja"
+
+[tool.djlint.js]
+indent_size=2
