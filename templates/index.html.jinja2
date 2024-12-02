@@ -3,98 +3,110 @@
   <head>
     <title>Kozea Promomaker</title>
     <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Promomaker est un concepteur de PLV innovant qui permet de créer facilement des affiches promotionnelles en pharmacie.">
-
-    <link rel="icon" type="image/ico" href="{{ url_for('static', filename='icon/favicon.ico') }}" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Hind+Madurai:300">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="Promomaker est un concepteur de PLV innovant qui permet de créer facilement des affiches promotionnelles en pharmacie.">
+    <link rel="icon"
+          type="image/ico"
+          href="{{ url_for('static', filename='icon/favicon.ico') }}" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Hind+Madurai:300">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+          type="text/css">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='stylesheets/styles.css') }}"
+          type="text/css"
+          media="all" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{ url_for('static', filename='javascripts/jquery-3.2.1.min.js') }}"></script>
-	<script async src="{{ url_for('static', filename='javascripts/bootstrap.js') }}"></script>
-    <script async src="{{ url_for('static', filename='javascripts/scrollreveal.min.js') }}"></script>
-	<script>
-    var checkNavBar = function() {
-      if ($(".navbar").offset().top > 30) {
-        $(".navbar-fixed-top").addClass("sticky");
-      } else {
-        $(".navbar-fixed-top").removeClass("sticky");
-      }
+    <script async
+            src="{{ url_for('static', filename='javascripts/bootstrap.js') }}"></script>
+    <script async
+            src="{{ url_for('static', filename='javascripts/scrollreveal.min.js') }}"></script>
+    <script>
+      var checkNavBar = function() {
+        if ($(".navbar").offset().top > 30) {
+          $(".navbar-fixed-top").addClass("sticky");
+        } else {
+          $(".navbar-fixed-top").removeClass("sticky");
+        }
 
-      checkMenu();
-    };
+        checkMenu();
+      };
 
-    var checkMenu = function() {
-      var target = '#home';
-      var targets = new Array();
+      var checkMenu = function() {
+        var target = '#home';
+        var targets = new Array();
 
-      $('.navbar li a').each(function() {
-        targets[targets.length] = $(this).attr('href');
-      });
+        $('.navbar li a').each(function() {
+          targets[targets.length] = $(this).attr('href');
+        });
 
-      for (i = 0; i < targets.length; i++) {
-        if (i < targets.length - 1) {
-          if ($(targets[i]).length && $(targets[i + 1]).length) {
-            if (($(document).scrollTop() + 10 >= $(targets[i]).offset().top) && ($(document).scrollTop() <= $(targets[i + 1]).offset().top)) {
-              target = targets[i];
+        for (i = 0; i < targets.length; i++) {
+          if (i < targets.length - 1) {
+            if ($(targets[i]).length && $(targets[i + 1]).length) {
+              if (($(document).scrollTop() + 10 >= $(targets[i]).offset().top) && ($(document).scrollTop() <= $(targets[i + 1]).offset().top)) {
+                target = targets[i];
+              }
             }
           }
         }
-      }
 
-      $('.navbar li').each(function() {
-        $(this).removeClass('active');
-        if ($('a', $(this)).attr('href') == target) $(this).addClass('active');
-      });
-    };
+        $('.navbar li').each(function() {
+          $(this).removeClass('active');
+          if ($('a', $(this)).attr('href') == target) $(this).addClass('active');
+        });
+      };
 
-    $(document).ready(function() {
-      $(window).scroll(function() {
+      $(document).ready(function() {
+        $(window).scroll(function() {
+          checkNavBar();
+        });
         checkNavBar();
-      });
-      checkNavBar();
 
-      $('.navbar a').click(function(e) {
-        e.preventDefault();
+        $('.navbar a').click(function(e) {
+          e.preventDefault();
 
-        var target = $(this).attr('href');
-        $('html, body').animate({
-          scrollTop: $(target).offset().top
-        },
-        'slow',
-        function() {
-          checkMenu();
+          var target = $(this).attr('href');
+          $('html, body').animate({
+              scrollTop: $(target).offset().top
+            },
+            'slow',
+            function() {
+              checkMenu();
+            });
+
+          return false;
         });
 
-        return false;
+        var config = {
+          viewFactor: 0.15,
+          duration: 800,
+          distance: "0px",
+          scale: 0.8,
+        }
+        var block = {
+          /*reset: true,*/
+          /*viewOffset: { top: 64 }*/
+        }
+        window.sr = ScrollReveal(config);
+        sr.reveal('#fonctionnalites', block);
+        sr.reveal('#parallax', block);
+        sr.reveal('#avantages', block);
+        sr.reveal('#relais', block);
+        sr.reveal('#a-propos', block);
+        sr.reveal('#contact', block);
       });
-
-      var config = {
-        viewFactor : 0.15,
-        duration   : 800,
-        distance   : "0px",
-        scale      : 0.8,
-      }
-      var block = {
-        /*reset: true,*/
-        /*viewOffset: { top: 64 }*/
-      }
-      window.sr = ScrollReveal(config);
-      sr.reveal('#fonctionnalites', block);
-      sr.reveal('#parallax', block);
-      sr.reveal('#avantages', block);
-      sr.reveal('#relais', block);
-      sr.reveal('#a-propos', block);
-      sr.reveal('#contact', block);
-    });
     </script>
     <script>
-    $(document).ready(function() {
-      $('#navbar a').click(function() {
-        $("#navbar").removeClass("in");
+      $(document).ready(function() {
+        $('#navbar a').click(function() {
+          $("#navbar").removeClass("in");
+        });
       });
-    });
     </script>
     <script type="text/javascript">
       var _paq = window._paq || [];
@@ -105,11 +117,17 @@
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
-        var u="https://pharminfo.matomo.cloud/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        var u = "https://pharminfo.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u + 'matomo.php']);
         _paq.push(['setSiteId', '3']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/pharminfo.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+        var d = document,
+          g = d.createElement('script'),
+          s = d.getElementsByTagName('script')[0];
+        g.type = 'text/javascript';
+        g.async = true;
+        g.defer = true;
+        g.src = '//cdn.matomo.cloud/pharminfo.matomo.cloud/matomo.js';
+        s.parentNode.insertBefore(g, s);
       })();
     </script>
     <script src="{{ url_for('static', filename='tarteaucitron/tarteaucitron.js') }}"></script>
@@ -127,8 +145,8 @@
         //"iconSrc": "",
         "iconPosition": "BottomRight",
         "adblocker": false,
-        "DenyAllCta" : true,
-        "AcceptAllCta" : true,
+        "DenyAllCta": true,
+        "AcceptAllCta": true,
         "highPrivacy": true,
         "handleBrowserDNTRequest": false,
         "removeCredit": false,
@@ -141,138 +159,234 @@
       });
     </script>
   </head>
-
   <body class="pull_top">
     <div class="navbar navbar-fixed-top" role="navigation">
       <div class="container-fluid container-nav">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".navbar-koz-collapse">
+          <button type="button"
+                  class="navbar-toggle pull-right"
+                  data-toggle="collapse"
+                  data-target=".navbar-koz-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h1><a href="#home" class="navbar-brand">Kozea Promomaker</a></h1>
+          <h1>
+            <a href="#home" class="navbar-brand">Kozea Promomaker</a>
+          </h1>
         </div>
-
-        <div class="collapse navbar-collapse navbar-koz-collapse" id="navbar" role="navigation">
-          <ul class="nav navbar-nav navbar-right test" >
-            <li class="active"><a href="#home">Accueil</a></li>
-            <li><a href="#fonctionnalites">Fonctionnalités</a></li>
-            <li><a href="#avantages">Avantages</a></li>
-            <li><a href="#relais">Mode d'emploi</a></li>
-            <li><a href="#a-propos">À propos</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <div class="collapse navbar-collapse navbar-koz-collapse"
+             id="navbar"
+             role="navigation">
+          <ul class="nav navbar-nav navbar-right test">
+            <li class="active">
+              <a href="#home">Accueil</a>
+            </li>
+            <li>
+              <a href="#fonctionnalites">Fonctionnalités</a>
+            </li>
+            <li>
+              <a href="#avantages">Avantages</a>
+            </li>
+            <li>
+              <a href="#relais">Mode d'emploi</a>
+            </li>
+            <li>
+              <a href="#a-propos">À propos</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
-
     <div class="container-fluid">
       <div id="home" class="row">
         <div class="col-xs-12">
           <div id="concepteur">
-            <h2 id="concepteurText"> Concepteur de PLV&nbsp;*<br/>
+            <h2 id="concepteurText">
+              Concepteur de PLV&nbsp;*
+              <br />
               <span class="small">Créer et diffuser des campagnes de communication et de promotion pour vos pharmacies</span>
             </h2>
-
             <div class="note">*&nbsp;Publicité sur Lieu de Vente</div>
           </div>
         </div>
       </div>
-
       {% with message = get_flashed_messages()[0] %}
-        {% if message %}<div id="flash" class="row"><p>{{ message }}</p></div>{% endif %}
+        {% if message %}
+          <div id="flash" class="row">
+            <p>{{ message }}</p>
+          </div>
+        {% endif %}
       {% endwith %}
-
       <div id="simple-groupement" class="row">
         <div class="col-xs-12">
           <h4>Simple pour votre groupement, accessible par tous vos pharmaciens adhérents</h4>
-          <p>Promomaker est un outil innovant qui permet de gérer facilement sa PLV en pharmacie<br/>en créant des affiches promotionnelles automatiquement.</p>
-          <iframe src="https://www.youtube.com/embed/DYS4roOFdQw?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <p>
+            Promomaker est un outil innovant qui permet de gérer facilement sa PLV en pharmacie
+            <br />
+            en créant des affiches promotionnelles automatiquement.
+          </p>
+          <iframe src="https://www.youtube.com/embed/DYS4roOFdQw?rel=0&amp;showinfo=0"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen></iframe>
         </div>
       </div>
-
       <div id="fonctionnalites">
         <div class="row">
           <div class="col-xs-12">
-            <h3 class="section-title">Des fonctionnalités adaptées<br/>à la création de vos promotions</h3>
+            <h3 class="section-title">
+              Des fonctionnalités adaptées
+              <br />
+              à la création de vos promotions
+            </h3>
           </div>
         </div>
-
         <ul class="fonctionnalites row">
-          <li class="bdd col-xs-12 col-sm-4 col-md-3 col-md-offset-4">Base de données de plus de 8000 produits</li>
-          <li class="douchette col-xs-12 col-sm-4 col-md-4">Utilisation possible de la douchette pour une intégration automatique du produit</li>
+          <li class="bdd col-xs-12 col-sm-4 col-md-3 col-md-offset-4">
+            Base de données de plus de 8000 produits
+          </li>
+          <li class="douchette col-xs-12 col-sm-4 col-md-4">
+            Utilisation possible de la douchette pour une intégration automatique du produit
+          </li>
           <li class="baguette col-xs-12 col-sm-4 col-md-3">Création automatique de l'affiche</li>
-
           <li class="pdf col-xs-12 col-sm-4 col-md-3 col-md-offset-4">Convertisseur PDF</li>
           <li class="impression col-xs-12 col-sm-4 col-md-4">Choix du format d'impression (du A0 au A7)</li>
-          <li class="automatisation col-xs-12 col-sm-4 col-md-3">Automatisation de campagnes de communication</li>
+          <li class="automatisation col-xs-12 col-sm-4 col-md-3">
+            Automatisation de campagnes de communication
+          </li>
         </ul>
       </div>
-
       <div id="parallax" class="row"></div>
-
       <div id="avantages">
         <h3 class="section-title">Avantages</h3>
         <dl>
           <dt>Accessible à tous</dt>
-          <dd>Disponible sur le web</dd>
-          <dd>Accès personnalisé groupement</dd>
-          <dd>Accès personnalisé adhérent</dd>
-          <dd>Toutes les campagnes sont stockées sur la plateforme Promomaker</dd>
-          <dd>Partage de document personnalisé</dd>
+          <dd>
+            Disponible sur le web
+          </dd>
+          <dd>
+            Accès personnalisé groupement
+          </dd>
+          <dd>
+            Accès personnalisé adhérent
+          </dd>
+          <dd>
+            Toutes les campagnes sont stockées sur la plateforme Promomaker
+          </dd>
+          <dd>
+            Partage de document personnalisé
+          </dd>
           <dt>Pour votre groupement</dt>
-          <dd>Interface claire et simple d'utilisation</dd>
-          <dd>Un visuel personnalisé selon votre groupement</dd>
+          <dd>
+            Interface claire et simple d'utilisation
+          </dd>
+          <dd>
+            Un visuel personnalisé selon votre groupement
+          </dd>
           <dt>Sécurité</dt>
-          <dd>Données cryptées et sécurisées</dd>
+          <dd>
+            Données cryptées et sécurisées
+          </dd>
         </dl>
       </div>
-
       <div id="relais" class="row">
         <div class="col-xs-12">
           <div class="row">
             <div class="col-xs-12">
-              <h3 class="section-title">Un relais assuré<br/>de votre communication groupement</h3>
+              <h3 class="section-title">
+                Un relais assuré
+                <br />
+                de votre communication groupement
+              </h3>
             </div>
           </div>
-
           <ul class="relais row">
-            <li class="gauche first col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3"><span class="visuel baguette"></span><span class="label">Le groupement<br/>crée les affichettes<br/>avec Promomaker</span></li>
-            <li class="droite first col-xs-12 col-sm-4 col-md-4 col-lg-3"><span class="visuel enveloppe"></span><span class="label">et envoie les campagnes<br/>promotionnelles aux pharmaciens<br/>adhérents via Promomaker</span></li>
-
-            <li class="gauche col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3"><span class="visuel enveloppe-open"></span><span class="label">Le pharmacien reçoit<br/>par mail les campagnes<br/>promotionnelles à venir</span></li>
-            <li class="droite col-xs-12 col-sm-4 col-md-4 col-lg-3"><span class="visuel fiche-select"></span><span class="label">Il sélectionne les affichettes<br/>de son choix à imprimer en<br/>pharmacie ou chez l'imprimeur</span></li>
-
-            <li class="gauche col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3"><span class="visuel fiche-multiple"></span><span class="label">Il choisit les formats<br/>d'impression<br/>et la quantité</span></li>
-            <li class="droite col-xs-12 col-sm-4 col-md-4 col-lg-3"><span class="visuel telecharge"></span><span class="label">Il télécharge<br/>les affichettes<br/>au format PDF</span></li>
-
-            <li class="gauche last col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3"><span class="visuel hand-ok"></span><span class="label">Les campagnes promotionnelles<br/>sont pilotées<br/>en toute simplicité</span></li>
+            <li class="gauche first col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3">
+              <span class="visuel baguette"></span><span class="label">Le groupement
+                <br />
+                crée les affichettes
+                <br />
+              avec Promomaker</span>
+            </li>
+            <li class="droite first col-xs-12 col-sm-4 col-md-4 col-lg-3">
+              <span class="visuel enveloppe"></span><span class="label">et envoie les campagnes
+                <br />
+                promotionnelles aux pharmaciens
+                <br />
+              adhérents via Promomaker</span>
+            </li>
+            <li class="gauche col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3">
+              <span class="visuel enveloppe-open"></span><span class="label">Le pharmacien reçoit
+                <br />
+                par mail les campagnes
+                <br />
+              promotionnelles à venir</span>
+            </li>
+            <li class="droite col-xs-12 col-sm-4 col-md-4 col-lg-3">
+              <span class="visuel fiche-select"></span><span class="label">Il sélectionne les affichettes
+                <br />
+                de son choix à imprimer en
+                <br />
+              pharmacie ou chez l'imprimeur</span>
+            </li>
+            <li class="gauche col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3">
+              <span class="visuel fiche-multiple"></span><span class="label">Il choisit les formats
+                <br />
+                d'impression
+                <br />
+              et la quantité</span>
+            </li>
+            <li class="droite col-xs-12 col-sm-4 col-md-4 col-lg-3">
+              <span class="visuel telecharge"></span><span class="label">Il télécharge
+                <br />
+                les affichettes
+                <br />
+              au format PDF</span>
+            </li>
+            <li class="gauche last col-xs-12 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-3 col-lg-3 col-lg-offset-3">
+              <span class="visuel hand-ok"></span><span class="label">Les campagnes promotionnelles
+                <br />
+                sont pilotées
+                <br />
+              en toute simplicité</span>
+            </li>
             <li class="end col-xs-12 col-sm-4 col-md-4 col-lg-3"></li>
           </ul>
         </div>
       </div>
-
       <div id="a-propos">
         <div class="row">
           <div class="col-xs-12">
             <h3 class="section-title">À propos</h3>
           </div>
         </div>
-
         <div>
-          <img src="{{ url_for('static', filename='images/kozea-group.jpg') }}" alt="Kozea group" title="Kozea group" class="img-responsive-propos" />
+          <img src="{{ url_for('static', filename='images/kozea-group.jpg') }}"
+               alt="Kozea group"
+               title="Kozea group"
+               class="img-responsive-propos" />
         </div>
         <div id="a-propos-text">
-          <p>Promomaker est un service pensé et réalisé par <a href="https://www.kozea.fr" class="brand-ap"><strong>Kozea group</strong></a>.</p>
-          <p><strong>Kozea group</strong> s'est penché sur l'élaboration de Promomaker à la suite d'une demande spécifique d'un groupement de pharmaciens qui souhaitait avoir un outil de
-            création et de diffusion de campagnes promotionnelles.</p>
-            <p>Le prototype de Promomaker a été créé en une semaine à l'aide d'un <strong>design sprint</strong>, suivi de tests utilisateurs auprès des pharmaciens du groupement pour valider la viabilité du projet.</p>
-          <p>Véritable incubateur de solutions digitales innovantes, <strong>Kozea group</strong> a la volonté de s'imposer comme un acteur majeur de la e-santé grâce à des innovations comme Promomaker.</p>
+          <p>
+            Promomaker est un service pensé et réalisé par <a href="https://www.kozea.fr" class="brand-ap"><strong>Kozea group</strong></a>.
+          </p>
+          <p>
+            <strong>Kozea group</strong> s'est penché sur l'élaboration de Promomaker à la suite d'une demande spécifique d'un groupement de pharmaciens qui souhaitait avoir un outil de
+            création et de diffusion de campagnes promotionnelles.
+          </p>
+          <p>
+            Le prototype de Promomaker a été créé en une semaine à l'aide d'un <strong>design sprint</strong>, suivi de tests utilisateurs auprès des pharmaciens du groupement pour valider la viabilité du projet.
+          </p>
+          <p>
+            Véritable incubateur de solutions digitales innovantes, <strong>Kozea group</strong> a la volonté de s'imposer comme un acteur majeur de la e-santé grâce à des innovations comme Promomaker.
+          </p>
         </div>
       </div>
-
       <div id="contact" class="row">
         <div class="col-xs-12">
           <div class="row">
@@ -280,39 +394,57 @@
               <h3 class="section-title">Contact</h3>
             </div>
             <div class="col-xs-12">
-              <p class="text-center">Téléphone : <a href="tel:+33478841928">04 78 84 19 28</a></p>
+              <p class="text-center">
+                Téléphone : <a href="tel:+33478841928">04 78 84 19 28</a>
+              </p>
             </div>
             <div class="col-xs-12">
-              <p class="text-center">Mail : <a href="mailto:promomaker@kozea.fr">promomaker@kozea.fr</a></p>
+              <p class="text-center">
+                Mail : <a href="mailto:promomaker@kozea.fr">promomaker@kozea.fr</a>
+              </p>
             </div>
           </div>
-
           <form action="{{ url_for('contact') }}" class="form-inline" method="post">
             <div class="form-group">
               <label for="lastname">Nom*</label>
-              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom*">
+              <input type="text"
+                     class="form-control"
+                     id="lastname"
+                     name="lastname"
+                     placeholder="Nom*">
             </div>
-
             <div class="form-group">
               <label for="firstname">Prénom*</label>
-              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom*">
+              <input type="text"
+                     class="form-control"
+                     id="firstname"
+                     name="firstname"
+                     placeholder="Prénom*">
             </div>
-
             <div class="form-group">
               <label for="company">Société*</label>
-              <input type="text" class="form-control" id="company" name="company" placeholder="Société*">
+              <input type="text"
+                     class="form-control"
+                     id="company"
+                     name="company"
+                     placeholder="Société*">
             </div>
-
             <div class="form-group">
               <label for="email">Adresse email*</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Adresse email*">
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     name="email"
+                     placeholder="Adresse email*">
             </div>
-
             <div class="form-group">
               <label for="phone">Téléphone*</label>
-              <input type="text" class="form-control" id="phone" name="phone" placeholder="Téléphone*">
+              <input type="text"
+                     class="form-control"
+                     id="phone"
+                     name="phone"
+                     placeholder="Téléphone*">
             </div>
-
             <div class="form-group-data">
               <label for="data">
                 <input id="data" name="data" type="checkbox" required />
@@ -323,45 +455,62 @@
                 mes préférences d'abonnement.
               </label>
             </div>
-
             <div class="form-group">
               <button type="submit" class="btn btn-default">Envoyer</button>
             </div>
           </form>
         </div>
       </div>
-
-    <footer>
-      <div class="footer-upper">
-        <h3>Promomaker</h3>
-        <h4>Une marque Kozea group</h4>
-        <ul class="social">
-          <li><a target="_blank" href="https://www.facebook.com/kozeagroup/"><i class="fa fa-facebook"></i><span>facebook</span></a></li>
-          <li><a target="_blank" href="https://www.linkedin.com/company/kozeagroup"><i class="fa fa-linkedin"></i><span>linkedin</span></a></li>
-          <li><a target="_blank" href="https://www.youtube.com/channel/UCx5VGRSsjpRWhc55EpI_gEw"><i class="fa fa-youtube"></i><span>youtube</span></a></li>
-          <li><a target="_blank" href="https://twitter.com/Kozeagroup"><i class="fa fa-twitter"></i><span>twitter</span></a></li>
-          <li><a target="_blank" href="https://fr.pinterest.com/kozeagroup/"><i class="fa fa-pinterest-p"></i><span>pinterest</span></a></li>
-          <li><a target="_blank" href="https://www.instagram.com/kozea/"><i class="fa fa-instagram"></i><span>instagram</span></a></li>
-          <li><a target="_blank" href="https://github.com/Kozea"><i class="fa fa-github"></i><span>github</span></a></li>
-        </ul>
-      </div>
-
-      <div class="footer-lower">
-        <p><a href="https://www.kozea.fr/">©Kozea</a> {{ current_year }} - Tous droits réservés</p>
-        <ul>
-          <li><a href="legal">Mentions légales</a></li>
-          <li><a href="#tarteaucitron" id="cookiesButton">Cookies</a></li>
-        </ul>
-      </div>
-    </footer>
-
-    <script type="text/javascript">
-      tarteaucitron.user.getguanty = '101338043';
-      (tarteaucitron.job = tarteaucitron.job || []).push('getquanty');
-    </script>
-    <script type="text/javascript">
-      tarteaucitron.user.hubspotId = '6374050';
-      (tarteaucitron.job = tarteaucitron.job || []).push('hubspot');
-    </script>
-  </body>
-</html>
+      <footer>
+        <div class="footer-upper">
+          <h3>Promomaker</h3>
+          <h4>Une marque Kozea group</h4>
+          <ul class="social">
+            <li>
+              <a target="_blank" href="https://www.facebook.com/kozeagroup/"><i class="fa fa-facebook"></i><span>facebook</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://www.linkedin.com/company/kozeagroup"><i class="fa fa-linkedin"></i><span>linkedin</span></a>
+            </li>
+            <li>
+              <a target="_blank"
+                 href="https://www.youtube.com/channel/UCx5VGRSsjpRWhc55EpI_gEw"><i class="fa fa-youtube"></i><span>youtube</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://twitter.com/Kozeagroup"><i class="fa fa-twitter"></i><span>twitter</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://fr.pinterest.com/kozeagroup/"><i class="fa fa-pinterest-p"></i><span>pinterest</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://www.instagram.com/kozea/"><i class="fa fa-instagram"></i><span>instagram</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://github.com/Kozea"><i class="fa fa-github"></i><span>github</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-lower">
+          <p>
+            <a href="https://www.kozea.fr/">©Kozea</a> {{ current_year }} - Tous droits réservés
+          </p>
+          <ul>
+            <li>
+              <a href="legal">Mentions légales</a>
+            </li>
+            <li>
+              <a href="#tarteaucitron" id="cookiesButton">Cookies</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <script type="text/javascript">
+        tarteaucitron.user.getguanty = '101338043';
+        (tarteaucitron.job = tarteaucitron.job || []).push('getquanty');
+      </script>
+      <script type="text/javascript">
+        tarteaucitron.user.hubspotId = '6374050';
+        (tarteaucitron.job = tarteaucitron.job || []).push('hubspot');
+      </script>
+    </body>
+  </html>
