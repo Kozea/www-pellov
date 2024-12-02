@@ -38,7 +38,6 @@ MANDRILL_KEY = app.config.get("MANDRILL_KEY")
 
 
 def store_contact(firstname, lastname, email, company, phone, **_):
-
     gc = gspread.service_account(CONTACT_SERVICE_ACCOUNT)
 
     wks = gc.open_by_key(CONTACT_SPREADSHEET_ID).get_worksheet_by_id(
