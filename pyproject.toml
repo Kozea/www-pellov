@@ -1,7 +1,8 @@
-[tool.black]
+[tool.ruff]
 line-length = 80
 
-[tool.isort]
-line_length = 80
-profile = "black"
-combine_as_imports = true
+[tool.ruff.lint]
+extend-select = ["I", "T20", "T100"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
