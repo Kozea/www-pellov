@@ -65,7 +65,9 @@ def store_contact(firstname, lastname, email, company, phone, **_):
 def page(page="index"):
     try:
         return render_template(
-            "{}.html".format(page), page=page, current_year=datetime.now().year
+            "{}.html.jinja2".format(page),
+            page=page,
+            current_year=datetime.now().year,
         )
 
     except jinja2.exceptions.TemplateNotFound:
