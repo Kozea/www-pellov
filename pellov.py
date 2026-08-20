@@ -64,7 +64,7 @@ def store_contact(firstname, lastname, email, company, phone, **_):
 def page(page="index"):
     try:
         return render_template(
-            "{}.html.jinja2".format(page),
+            f"{page}.html.jinja2",
             page=page,
             current_year=datetime.now().year,
         )
@@ -86,11 +86,11 @@ def contact():
         "from_email": "contact@kozea.fr",
         "html": "<br>".join(
             [
-                "Prénom : %s" % request.form.get("firstname", ""),
-                "Nom : %s" % request.form.get("lastname", ""),
-                "Email : %s" % request.form.get("email", ""),
-                "Société : %s" % request.form.get("company", ""),
-                "Téléphone : %s" % request.form.get("phone", ""),
+                f"Prénom : {request.form.get('firstname', '')}",
+                f"Nom : {request.form.get('lastname', '')}",
+                f"Email : {request.form.get('email', '')}",
+                f"Société : {request.form.get('company', '')}",
+                f"Téléphone : {request.form.get('phone', '')}",
             ]
         ),
     }
